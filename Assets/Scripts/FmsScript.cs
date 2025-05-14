@@ -9,7 +9,7 @@ public class FmsScript : MonoBehaviour
     Vector2 look;
 
     Vector3 velocity; // 7 person
-    float mass = 1f;
+    public float mass = 1f;
     public float jumpSpeed = 5f;
     //character
     private void Awake()
@@ -36,7 +36,7 @@ public class FmsScript : MonoBehaviour
         look.y = Mathf.Clamp(look.y, -90, 90);
         cameraTransform.localRotation = Quaternion.Euler(-look.y, 0, 0); //2.1
         transform.localRotation = Quaternion.Euler(0, look.x, 0); //2   player
-     }
+    }
     void UpdateMovement()
     {   //3
         var x = Input.GetAxis("Horizontal");

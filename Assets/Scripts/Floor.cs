@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
     float initialSpeed = 0.1f;
     float acceleration = 0.5f;
+
+    public float maxSpeed = 5f;
 
     private float currentSpeed;
     // Start is called before the first frame update
@@ -18,7 +18,10 @@ public class Floor : MonoBehaviour
     void Update()
     {
         transform.position += Vector3.up * currentSpeed * Time.deltaTime;
-        currentSpeed += acceleration * Time.deltaTime;
+        if (currentSpeed <= maxSpeed)
+        {
+            currentSpeed += acceleration * Time.deltaTime;
+        }
     }
 
     void OnTriggerEnter(Collider other)

@@ -141,7 +141,7 @@ public class LevelGenerator : MonoBehaviour
     {
         GameObject lava = Instantiate(lavaPrefab);
         lava.transform.parent = parent.transform;
-        lava.transform.localScale = size;
+        // lava.transform.localScale = size;
         lava.transform.localPosition = new Vector3(0, -wallHeight, 0);
     }
 

@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Floor : MonoBehaviour
 {
@@ -28,6 +27,12 @@ public class Floor : MonoBehaviour
         if (other.gameObject.name == "Platform")
         {
             Destroy(other.gameObject); // Remove the object that triggered this one
+        }
+
+        if (other.gameObject.tag == "Player")
+        {
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadSceneAsync("GameOver");
         }
     }
 

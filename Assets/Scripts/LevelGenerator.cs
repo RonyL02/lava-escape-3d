@@ -130,6 +130,13 @@ public class LevelGenerator : MonoBehaviour
         Rigidbody rb = platform.AddComponent<Rigidbody>();
         rb.isKinematic = true;
 
+        // BoxCollider collider = platform.AddComponent<BoxCollider>();
+        // collider.size = scale;
+        // collider.isTrigger = true;
+
+        platform.AddComponent<Platform>();
+
+
         if (platformMaterial != null)
         {
             Renderer renderer = platform.GetComponent<Renderer>();

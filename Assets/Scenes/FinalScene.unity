@@ -309,6 +309,7 @@ MonoBehaviour:
   floorMaterial: {fileID: 2100000, guid: 1822aa26dfe320d438dc2d8a4c6e52c0, type: 2}
   initialSpeed: 0.5
   acceleration: 0.05
+  lavaPrefab: {fileID: 3044319070572049633, guid: b92aafe5c5bc9534dbd86e0e73d874b2, type: 3}
   spawnInterval: 1
 --- !u!4 &350658981
 Transform:

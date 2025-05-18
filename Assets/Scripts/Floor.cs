@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Floor : MonoBehaviour
 {
-    float initialSpeed = 0.1f;
-    float acceleration = 0.5f;
+    public float initialSpeed = 0.001f;
+    public float acceleration = 0.005f;
 
     private float currentSpeed;
     // Start is called before the first frame update
@@ -15,10 +15,12 @@ public class Floor : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+
+    void FixedUpdate()
     {
-        transform.position += Vector3.up * currentSpeed * Time.deltaTime;
-        currentSpeed += acceleration * Time.deltaTime;
+        transform.position += Vector3.up * currentSpeed * Time.fixedDeltaTime;
+        currentSpeed += acceleration * Time.fixedDeltaTime;
+
     }
 
     void OnTriggerEnter(Collider other)

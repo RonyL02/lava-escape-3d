@@ -6,6 +6,8 @@ public class Floor : MonoBehaviour
     public float initialSpeed = 0.001f;
     public float acceleration = 0.005f;
 
+    public float maxSpeed = 5f;
+
     private float currentSpeed;
     // Start is called before the first frame update
     void Start()
@@ -17,9 +19,11 @@ public class Floor : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position += Vector3.up * currentSpeed * Time.fixedDeltaTime;
-        currentSpeed += acceleration * Time.fixedDeltaTime;
-
+        transform.position += Vector3.up * currentSpeed * Time.deltaTime;
+        if (currentSpeed <= maxSpeed)
+        {
+            currentSpeed += acceleration * Time.deltaTime;
+        }
     }
 
     void OnTriggerEnter(Collider other)

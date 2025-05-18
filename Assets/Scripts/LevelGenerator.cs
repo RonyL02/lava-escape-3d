@@ -139,28 +139,10 @@ public class LevelGenerator : MonoBehaviour
 
     private void AddFloor(GameObject parent, Vector3 size)
     {
-        GameObject lava = Instantiate(lavaPrefab);//GameObject.CreatePrimitive(PrimitiveType.Cube);
-        // floor.name = "Floor";
-        // floor.tag = "lava";
+        GameObject lava = Instantiate(lavaPrefab);
         lava.transform.parent = parent.transform;
         lava.transform.localScale = size;
         lava.transform.localPosition = new Vector3(0, -wallHeight, 0);
-
-        // floor.AddComponent<Floor>();
-        // var audioSource = floor.AddComponent<AudioSource>();
-        // audioSource.loop = true;
-        // audioSource.playOnAwake = true;
-        // audioSource.clip = lavaAudioClip;
-
-        // BoxCollider collider = floor.AddComponent<BoxCollider>();
-        // collider.size = size;
-        // collider.isTrigger = true;
-
-        // if (floorMaterial != null)
-        // {
-        //     Renderer renderer = floor.GetComponent<Renderer>();
-        //     renderer.material = floorMaterial;
-        // }
     }
 
     void OnTriggerEnter(Collider other)

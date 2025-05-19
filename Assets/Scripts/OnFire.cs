@@ -31,6 +31,11 @@ public class OnFire : MonoBehaviour
             onFire = true;
             burnCoroutine = StartCoroutine(StartBurning());
         }
+
+        if (other.CompareTag("Respawn"))
+        {
+            Die();
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -63,6 +68,5 @@ public class OnFire : MonoBehaviour
         }
         SceneManager.LoadSceneAsync("GameOver");
         Cursor.lockState = CursorLockMode.None;
-
     }
 }

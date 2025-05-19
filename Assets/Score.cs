@@ -11,11 +11,11 @@ public class Score : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+     
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         int currentHeight = (int)player.transform.position.y;
         if (currentHeight > score)

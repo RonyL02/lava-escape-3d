@@ -17,6 +17,7 @@ public class GameOverScene : MonoBehaviour
     }
     public void StartGame()
     {
+        Score.score = 0;
         SceneManager.LoadSceneAsync("FinalScene");
     }
 }

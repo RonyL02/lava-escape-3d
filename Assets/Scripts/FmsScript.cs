@@ -65,8 +65,6 @@ public class FmsScript : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collided with " + collision.collider.gameObject);
-
         if (
             collision.collider.gameObject.CompareTag("Platform") &&
             collision.gameObject.transform.position.y > gameObject.transform.position.y &&
@@ -74,6 +72,7 @@ public class FmsScript : MonoBehaviour
         )
         {
             hitSound.Play();
+            Debug.Log("Played sound " + hitSound);
             lastHitTime = Time.time;
         }
     }

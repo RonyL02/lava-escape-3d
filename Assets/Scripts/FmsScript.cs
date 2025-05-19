@@ -1,6 +1,7 @@
 using UnityEngine;
 public class FmsScript : MonoBehaviour
 {
+    public AudioSource hitSound;
     CharacterController controller;
     public Transform cameraTransform; // 2 camera
     public float playerSpeed = 5;
@@ -58,5 +59,22 @@ public class FmsScript : MonoBehaviour
         var gravity = Physics.gravity * mass * Time.deltaTime;
         //Check CharacterController touching the ground during the last move?
         velocity.y = controller.isGrounded ? -1 : velocity.y + gravity.y;
+    }
+
+    private float lastHitTime = -1f;
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collided with " + collision.collider.gameObject);
+
+        if (
+            collision.collider.gameObject.CompareTag("Platform") &&
+            collision.gameObject.transform.position.y > gameObject.transform.position.y &&
+            Time.time - lastHitTime >= 1f // only play if 1 second has passed
+        )
+        {
+            hitSound.Play();
+            lastHitTime = Time.time;
+        }
     }
 }

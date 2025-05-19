@@ -34,6 +34,7 @@ public class OnFire : MonoBehaviour
 
         if (other.CompareTag("Respawn"))
         {
+            Debug.Log("Hit Respawn point");
             Die();
         }
     }

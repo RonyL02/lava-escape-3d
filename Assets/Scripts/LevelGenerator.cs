@@ -135,6 +135,7 @@ public class LevelGenerator : MonoBehaviour
         platform.transform.position = position;
         platform.transform.localScale = scale;
         platform.name = "Platform";
+        platform.tag = "Platform";
 
         Rigidbody rb = platform.AddComponent<Rigidbody>();
         rb.isKinematic = true;

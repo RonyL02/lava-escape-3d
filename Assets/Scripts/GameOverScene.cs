@@ -4,14 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class StartScene : MonoBehaviour
+public class GameOverScene : MonoBehaviour
 {
+    public Text score;
 
     public Text record;
 
     void Start()
     {
-        record.text = record.text + " " + PlayerPrefs.GetInt("score").ToString();
+        record.text += " " + PlayerPrefs.GetInt("score").ToString();
+        score.text += " " + Score.score.ToString();
     }
     public void StartGame()
     {

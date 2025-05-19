@@ -35,8 +35,13 @@ public class Floor : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
-            Cursor.lockState = CursorLockMode.None;
+            int currentRecord = PlayerPrefs.GetInt("score");
+            if (Score.score > currentRecord)
+            {
+                PlayerPrefs.SetInt("score", Score.score);
+            }
             SceneManager.LoadSceneAsync("GameOver");
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 

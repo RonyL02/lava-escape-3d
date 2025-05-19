@@ -160,8 +160,6 @@ public class LevelGenerator : MonoBehaviour
             AddFloor(this.gameObject, new Vector3(wallWidth, 0.1f, wallWidth));
             BoxCollider bc = GetComponent<BoxCollider>();
             bc.enabled = false;
-            Debug.Log("aaaaaaaaaaaaa");
         }
-
     }
 }

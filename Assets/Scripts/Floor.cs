@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Floor : MonoBehaviour
 {
-    float initialSpeed = 0.1f;
-    float acceleration = 0.5f;
+    public float initialSpeed = 0.001f;
+    public float acceleration = 0.005f;
 
     public float maxSpeed = 5f;
 
@@ -15,7 +16,8 @@ public class Floor : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+
+    void FixedUpdate()
     {
         transform.position += Vector3.up * currentSpeed * Time.deltaTime;
         if (currentSpeed <= maxSpeed)
@@ -29,6 +31,17 @@ public class Floor : MonoBehaviour
         if (other.gameObject.name == "Platform")
         {
             Destroy(other.gameObject); // Remove the object that triggered this one
+        }
+
+        if (other.gameObject.tag == "Player")
+        {
+            int currentRecord = PlayerPrefs.GetInt("score");
+            if (Score.score > currentRecord)
+            {
+                PlayerPrefs.SetInt("score", Score.score);
+            }
+            SceneManager.LoadSceneAsync("GameOver");
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 

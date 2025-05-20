@@ -20,4 +20,10 @@ public class GameOverScene : MonoBehaviour
         Score.score = 0;
         SceneManager.LoadSceneAsync("FinalScene");
     }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadSceneAsync("StartScene");
+
+    }
 }

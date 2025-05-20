@@ -18,4 +18,9 @@ public class StartScene : MonoBehaviour
         Score.score = 0;
         SceneManager.LoadSceneAsync("FinalScene");
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }

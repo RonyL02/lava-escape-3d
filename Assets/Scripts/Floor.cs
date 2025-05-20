@@ -33,16 +33,16 @@ public class Floor : MonoBehaviour
             Destroy(other.gameObject); // Remove the object that triggered this one
         }
 
-        if (other.gameObject.tag == "Player")
-        {
-            int currentRecord = PlayerPrefs.GetInt("score");
-            if (Score.score > currentRecord)
-            {
-                PlayerPrefs.SetInt("score", Score.score);
-            }
-            SceneManager.LoadSceneAsync("GameOver");
-            Cursor.lockState = CursorLockMode.None;
-        }
+        // if (other.gameObject.tag == "Player")
+        // {
+        //     int currentRecord = PlayerPrefs.GetInt("score");
+        //     if (Score.score > currentRecord)
+        //     {
+        //         PlayerPrefs.SetInt("score", Score.score);
+        //     }
+        //     SceneManager.LoadSceneAsync("GameOver");
+        //     Cursor.lockState = CursorLockMode.None;
+        // }
     }
 
 

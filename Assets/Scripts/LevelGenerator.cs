@@ -8,6 +8,7 @@ public class LevelGenerator : MonoBehaviour
     public float wallHeight = 20f;
     public float wallThickness = 0.5f;
     public int wallsLevel = 5;
+    private int prevWallIndex = 0;
 
     //platforms
     public Material platformMaterial;
@@ -113,6 +114,14 @@ public class LevelGenerator : MonoBehaviour
     private void GeneratePlatformOnWall(float y)
     {
         int wallIndex = Random.Range(0, 4); // 0 = Front, 1 = Back, 2 = Left, 3 = Right
+
+        while (wallIndex == prevWallIndex)
+        {
+            wallIndex = Random.Range(0, 4);
+        }
+
+        prevWallIndex = wallIndex;
+
         float halfWidth = wallWidth / 2f;
         float halfThickness = wallThickness / 2f;
 
@@ -155,6 +164,7 @@ public class LevelGenerator : MonoBehaviour
         platform.transform.localScale = scale;
         platform.name = "Platform";
         platform.layer = LayerMask.NameToLayer("Platform");
+        platform.tag = "Platform";
 
         Rigidbody rb = platform.AddComponent<Rigidbody>();
         rb.isKinematic = true;

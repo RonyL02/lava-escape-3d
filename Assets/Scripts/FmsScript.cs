@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class FmsScript : MonoBehaviour
 {
+    public AudioSource hitSound;
     CharacterController controller;
     public Transform cameraTransform; // 2 camera
     public float playerSpeed = 5;
@@ -13,6 +14,8 @@ public class FmsScript : MonoBehaviour
     public float mass = 1f;
     public float jumpSpeed = 5f;
     //character
+    private float lastHitTime = -1f;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -73,5 +76,17 @@ public class FmsScript : MonoBehaviour
             SceneManager.LoadSceneAsync("GameOver");
             Cursor.lockState = CursorLockMode.None;
         }
+        
+        if (
+            collision.collider.gameObject.CompareTag("Platform") &&
+            collision.gameObject.transform.position.y > gameObject.transform.position.y &&
+            Time.time - lastHitTime >= 1f // only play if 1 second has passed
+        )
+        {
+            hitSound.Play();
+            Debug.Log("Played sound " + hitSound);
+            lastHitTime = Time.time;
+        }
     }
 }
+

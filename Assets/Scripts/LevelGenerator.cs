@@ -195,7 +195,16 @@ public class LevelGenerator : MonoBehaviour
     private void ThrowBallFromTop()
     {
         float highestY = wallsLevel * wallHeight;
-        Vector3 spawnPosition = transform.position + new Vector3(0, highestY + ballOffset, 0);
+        float halfWall = wallWidth / 2f;
+        float offsetFromEdge = 1f; // optional: avoid spawning exactly on the edge
+
+        // Random position within wall bounds
+        float randomX = Random.Range(transform.position.x - halfWall + offsetFromEdge, transform.position.x + halfWall - offsetFromEdge);
+        float randomZ = Random.Range(transform.position.z - halfWall + offsetFromEdge, transform.position.z + halfWall - offsetFromEdge);
+        float spawnY = transform.position.y + highestY + ballOffset;
+
+        Vector3 spawnPosition = new Vector3(randomX, spawnY, randomZ);
+
 
         GameObject ball = Instantiate(ballPrefab, spawnPosition, Quaternion.identity);
         ball.layer = LayerMask.NameToLayer("Ball");

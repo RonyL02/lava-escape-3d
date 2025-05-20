@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class FmsScript : MonoBehaviour
 {
     CharacterController controller;
@@ -58,5 +59,19 @@ public class FmsScript : MonoBehaviour
         var gravity = Physics.gravity * mass * Time.deltaTime;
         //Check CharacterController touching the ground during the last move?
         velocity.y = controller.isGrounded ? -1 : velocity.y + gravity.y;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ball"))
+        {
+            int currentRecord = PlayerPrefs.GetInt("score");
+            if (Score.score > currentRecord)
+            {
+                PlayerPrefs.SetInt("score", Score.score);
+            }
+            SceneManager.LoadSceneAsync("GameOver");
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 }

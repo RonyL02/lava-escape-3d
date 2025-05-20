@@ -24,15 +24,6 @@ public class Ball : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (collision.collider.CompareTag("Player"))
-        {
-            int currentRecord = PlayerPrefs.GetInt("score");
-            if (Score.score > currentRecord)
-            {
-                PlayerPrefs.SetInt("score", Score.score);
-            }
-            SceneManager.LoadSceneAsync("GameOver");
-            Cursor.lockState = CursorLockMode.None;
-        }
+
     }
 }

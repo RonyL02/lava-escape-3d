@@ -28,7 +28,16 @@ public class LevelGenerator : MonoBehaviour
     public GameObject lavaPrefab;
 
     public float spawnInterval = 2f;
+
+    public float ballSpawnInterval = 2f;
+    public GameObject ballPrefab;
+
+    public float ballOffset = 4;
+    public float ballThrowForce = 4;
+
     private float timer = 0f;
+    private float ballTimer = 0f;
+
 
     private bool startSpawning = false;
     void Start()
@@ -53,6 +62,25 @@ public class LevelGenerator : MonoBehaviour
                 timer = 0f;
                 GenerateWalls(wallsLevel * wallHeight);
                 wallsLevel++;
+            }
+        }
+
+        if (startSpawning)
+        {
+            timer += Time.deltaTime;
+            ballTimer += Time.deltaTime;
+
+            if (timer >= spawnInterval)
+            {
+                timer = 0f;
+                GenerateWalls(wallsLevel * wallHeight);
+                wallsLevel++;
+            }
+
+            if (ballTimer >= ballSpawnInterval)
+            {
+                ballTimer = 0f;
+                ThrowBallFromTop();
             }
         }
     }
@@ -126,6 +154,7 @@ public class LevelGenerator : MonoBehaviour
         platform.transform.position = position;
         platform.transform.localScale = scale;
         platform.name = "Platform";
+        platform.layer = LayerMask.NameToLayer("Platform");
 
         Rigidbody rb = platform.AddComponent<Rigidbody>();
         rb.isKinematic = true;
@@ -161,5 +190,18 @@ public class LevelGenerator : MonoBehaviour
             BoxCollider bc = GetComponent<BoxCollider>();
             bc.enabled = false;
         }
+    }
+
+    private void ThrowBallFromTop()
+    {
+        float highestY = wallsLevel * wallHeight;
+        Vector3 spawnPosition = transform.position + new Vector3(0, highestY + ballOffset, 0);
+
+        GameObject ball = Instantiate(ballPrefab, spawnPosition, Quaternion.identity);
+        ball.layer = LayerMask.NameToLayer("Ball");
+
+        Rigidbody rb = ball.GetComponent<Rigidbody>();
+        rb.useGravity = false; // Disable built-in gravity
+        rb.velocity = Vector3.down * ballThrowForce;
     }
 }
